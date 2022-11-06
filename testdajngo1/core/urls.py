@@ -32,3 +32,9 @@ urlpatterns = [
 #fo debugging
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+
+
+
+
+#all urls definitions, admin urls, others ...
+#item name seperate
