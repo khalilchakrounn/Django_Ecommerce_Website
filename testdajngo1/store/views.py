@@ -23,3 +23,14 @@ def category_list(request, category_slug):
     category = get_object_or_404(Category, slug=category.slug)
     products = Product.objects.filter(category=category)
     return render(request, 'store/products/category.html', {'category': category})
+
+def contact(request, *args, **kwargs):
+    print(args, kwargs)
+    return render(request, 'store/contacts.html', {'args': args})
+
+def aboutView(request, *args, **kwargs):
+    my_context={
+        "text" : "this is the text",
+        "number": 1212
+    }
+    return render(request, 'store/about.html', my_context)
