@@ -21,10 +21,11 @@ from django.conf.urls.static import static
 
 from store import views
 
-app_name='store'
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),   
+    path('blog/', include('blog.urls')),
     path('', include('store.urls',namespace='store')),#to be more organised and to include urls from store urls
 ]
 #for debugging

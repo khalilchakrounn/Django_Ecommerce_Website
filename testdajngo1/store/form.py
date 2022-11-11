@@ -4,10 +4,10 @@ from .models import Product
 
 class ProductForm(forms.ModelForm):
     slug= forms.SlugField(required=True)
-    authr= forms.CharField(required=True, widget=forms.Textarea( attres={"placeholder": "authr name"}))
+    authr= forms.CharField(required=True, widget=forms.Textarea( attrs={"placeholder": "authr name"}))
     price = forms.FloatField(min_value=1.00)
     description= forms.TimeField(required=True, widget=forms.Textarea(
-                                                                attres={
+                                                                attrs={
                                                                     "class": "new-class-name",
                                                                     "id": "my_id_description",
                                                                     "rows": 10,
@@ -31,13 +31,13 @@ class ProductForm(forms.ModelForm):
 
 
 
-class RawProductForm(forms.form):
+class RawProductForm(forms.Form):
     slug= forms.SlugField(required=True)
     authr= forms.CharField(required=True)
     price = forms.FloatField(min_value=1.00)
     description= forms.TimeField(required=True, widget=forms.Textarea(
 
-                                                                attres={
+                                                                attrs={
                                                                     "class": "new-class-name",
                                                                     "id": "my_id_description",
                                                                     "rows": 10,
