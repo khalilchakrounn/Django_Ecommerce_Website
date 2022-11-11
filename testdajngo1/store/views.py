@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404, render
 from .models import Category, Product
 # Create your views here.
-from .forms import ProductForm
+from .form import ProductForm, RawProductForm
 
 def categories(request):
     return{
@@ -37,12 +37,30 @@ def aboutView(request, *args, **kwargs):
     return render(request, 'store/about.html', my_context)
 
 
-def product_creat_view(request):
+#def product_creat_view(request):
+    #new_name=request.POST.get('name')   # to get the name from the request
     form= ProductForm(request.Post or None)
     if form.is_valid():
         form.save()
         form= ProductForm()  # to clear the form and represent an empty one
 
+    context={
+        'form': form
+    }
+    return render ( request, "store/products/create.html", context)
+
+
+def product_creat_view(request):
+    form= RawProductForm()
+    if request.method =="POST":
+        form= RawProductForm(request.Post )
+        if form.is_valid():
+            form.save()
+            Product.objects.create(**form.cleaned_data)   # ** to turn the the inputs to Kwargs
+           
+        else:
+            print(form.errors)
+             #form= ProductForm()  # to clear the form and represent an empty one
     context={
         'form': form
     }
