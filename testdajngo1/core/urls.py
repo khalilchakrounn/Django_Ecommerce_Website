@@ -24,12 +24,10 @@ from store import views
 app_name='store'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.all_products, name='all_products'),
-    path('item/<slug:slug>/', views.product_detail, name='product_detail'),
-    path('', include('store.urls',namespace='store')),#to be more organised
+    path('admin/', admin.site.urls),   
+    path('', include('store.urls',namespace='store')),#to be more organised and to include urls from store urls
 ]
-#fo debugging
+#for debugging
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
 

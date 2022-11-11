@@ -1,8 +1,9 @@
 from itertools import product
 from unicodedata import category
 from django.shortcuts import render
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render,redirect
 from .models import Category, Product
+from django.http import Http404 
 # Create your views here.
 from .form import ProductForm, RawProductForm
 
@@ -65,3 +66,38 @@ def product_creat_view(request):
         'form': form
     }
     return render ( request, "store/products/create.html", context)
+
+
+def render_intial_data(request):
+    initial_data={
+        'slug': "slug name"
+    }
+    #obj=Product.objects.get(id=1)#for modification
+    Form=ProductForm(request.POST or None, initial=initial_data) # instance=obj   put instead of initial data for modification
+    if Form.is_valid():
+        Form.save()
+    context = {
+        'form': Form
+    }
+    return render(request, "products/product_create.html", context)
+
+def dynamic_lookup(request,id):
+    try:
+        obj=Product.objects.get(id=id)
+    except Product.DoesNotExist:
+        raise Http404
+    #obj=get_object_or_404(Product, id=id)
+    context={
+        "object": obj
+    }
+    return render(request, "products/product_detail.html", context)
+
+def product_delete_view(request, id):
+    obj= get_object_or_404(Product, id=id)
+    if request.method =="POST":
+        obj.delete()
+        return redirect('../../')
+    context={
+        "object": obj
+    }
+    return render(request, "products/product_delete.html", context)

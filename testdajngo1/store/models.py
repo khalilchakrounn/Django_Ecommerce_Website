@@ -46,7 +46,7 @@ class Product(models.Model):
         #when selected , retrivve ordered by creation date
     
     def get_absolute_url(self):
-        return reverse("store:product_detail", args=[self.slug])
+        return reverse("store:product_detail", args=[self.slug])# store from the name space chosen in urls
     
 
     def __str__(self):
