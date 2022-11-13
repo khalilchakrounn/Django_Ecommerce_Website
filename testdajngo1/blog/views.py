@@ -23,7 +23,7 @@ class ArticleCreateView(CreateView):
         print(form.cleaned_data)
         return super().form_valid(form)
 
-    #def get_success_url(self):
+    #def get_success_url(self):   # another way  to redirect after creating
     #    return '/'
 
 class ArticleListView(ListView):
