@@ -4,6 +4,8 @@ app_name ='store'
 
 from store.views import product_creat_view, aboutView, contact,dynamic_lookup
 
+app_name='store'
+
 urlpatterns = [
     path('', views.all_products, name='all_products'),
     path('about/', aboutView),
