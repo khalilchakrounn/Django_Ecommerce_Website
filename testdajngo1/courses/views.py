@@ -120,7 +120,9 @@ def my_fbv(request, *args, **kwargs):
 #class ProtectedView(TemplateView):
     template_name = 'secret.html'
 
-#@method_decorator(never_cache, name='dispatch')
-#@method_decorator(login_required, name='dispatch')
-#class ProtectedView(TemplateView):
+#@method_decorator(never_cache, name='dispatch') # never save cache for each instance of this function
+#@method_decorator(login_required, name='dispatch')# always login assured for each instance
+#class ProtectedView(TemplateView):  # never cache before login required
     template_name = 'secret.html'
+
+#dispatch like get and post methodes,  means for each instance
