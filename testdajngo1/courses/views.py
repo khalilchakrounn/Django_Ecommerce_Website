@@ -88,7 +88,8 @@ class CourseCreateView(View):
 class CourseListView(View):
     template_name = "courses/course_list.html"
     queryset = Course.objects.all()
-
+    #queryset = Course.objects.filter('-publication_date') # filter by descending order
+    #queryset = Course.objects.filter(title='test')
     def get_queryset(self):
         return self.queryset
 
@@ -108,9 +109,9 @@ class CourseView(CourseObjectMixin, View):
     #     return render(request, 'about.html', {})
 
 # HTTP METHODS
-def my_fbv(request, *args, **kwargs):
-    print(request.method)
-    return render(request, 'about.html', {})
+    def my_fbv(request, *args, **kwargs):
+        print(request.method)
+        return render(request, 'about.html', {})
 
 
 
