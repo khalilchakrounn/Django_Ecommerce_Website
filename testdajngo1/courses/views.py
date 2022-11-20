@@ -127,3 +127,18 @@ class CourseView(CourseObjectMixin, View):
     template_name = 'secret.html'
 
 #dispatch like get and post methodes,  means for each instance
+
+
+
+#class ContactFormView(FormView):
+    template_name = 'contact.html'
+    form_class = ContactForm
+    success_url = '/thanks/'
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        form.send_email()
+        return super().form_valid(form)
+
+#We have to use reverse_lazy() instead of reverse(), as the urls are not loaded when the file is imported.
