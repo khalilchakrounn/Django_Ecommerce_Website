@@ -142,3 +142,5 @@ class CourseView(CourseObjectMixin, View):
         return super().form_valid(form)
 
 #We have to use reverse_lazy() instead of reverse(), as the urls are not loaded when the file is imported.
+
+# git commt elarning
